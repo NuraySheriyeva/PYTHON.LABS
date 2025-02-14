@@ -23,6 +23,10 @@ difference = date2 - date1
 seconds = difference.total_seconds()
 print(int(seconds))
 '''
+
+
+
+'''
 #Create a generator that generates the squares of numbers up to some number N.
 def square_generator(N):
     for i in range(N + 1):
@@ -38,8 +42,7 @@ def even(num):
     for i in range(0,num):
         if i%2==0:
             yield i
-        else:
-            continue
+
 
 numb=int(input("Enter: "))
 gen=even(numb)
@@ -47,9 +50,40 @@ gen=even(numb)
 for i in gen:
     print(", ".join(map(str, gen)))
 #Define a function with a generator which can iterate the numbers, which are divisible by 3 and 4, between a given range 0 and n.
+def forthree(n):
+    for i in range(0, n):
+        if i%3==0 and i%4==0:
+            yield i
+        else :
+            continue
 
+n=int(input("Enter n: "))
+gen=forthree(n)
+
+for i in gen: print(i)
 #Implement a generator called squares to yield the square of all numbers from (a) to (b). Test it with a "for" loop and print each of the yielded values.
+def squares(a, b):
+    for i in range(a,b):
+        yield i*i
+
+a=int(input("Enter a: "))
+b=int(input("Enter b: "))
+gen = squares(a,b)
+
+for i in gen: print(i)
 #Implement a generator that returns all numbers from (n) down to 0.
+def down(c):
+    for i in range(c, 0, -1):
+        yield i
+    
+c=int(input("Enter c:"))
+gen = down(c)
+
+for i in gen: print(i)
+'''
+
+
+
 '''
 import math 
 #Write a Python program to convert degree to radian.
