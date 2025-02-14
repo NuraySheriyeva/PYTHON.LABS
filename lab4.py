@@ -47,6 +47,7 @@ gen=even(numb)
 for i in gen:
     print(", ".join(map(str, gen)))
 #Define a function with a generator which can iterate the numbers, which are divisible by 3 and 4, between a given range 0 and n.
+
 #Implement a generator called squares to yield the square of all numbers from (a) to (b). Test it with a "for" loop and print each of the yielded values.
 #Implement a generator that returns all numbers from (n) down to 0.
 '''
