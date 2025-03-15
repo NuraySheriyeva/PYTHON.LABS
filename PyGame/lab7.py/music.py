@@ -27,6 +27,7 @@ circle_x=250
 circle_y=292
 
 text = test_font.render('Calming Lo-fi', True, 'Black')
+text2 = test_font.render('Jazzing Free', True, 'Black')
 
 calm = '../audio/calm.mp3'
 jazz = '../audio/jazz.mp3'
@@ -41,6 +42,9 @@ ball = pygame.image.load('../images/grey.png')
 ball = pygame.transform.scale(ball, (10, 10))
 
 now=calm
+imaging= lofi
+speed=0
+texting = text
 def current(me):
     pygame.mixer.music.load(me)
 
@@ -55,8 +59,8 @@ while True:
     #screen.blit(pause, (220, 320))
     screen.blit(next, (420, 320))
     screen.blit(prev, (520, 320))
-    screen.blit(text, (280, 40))
-    screen.blit(lofi, (300,80))
+    screen.blit(texting, (280, 40))
+    screen.blit(imaging, (300,80))
     screen.blit(line, (250, 290))
     screen.blit(ball, (circle_x, circle_y))
     
@@ -65,22 +69,32 @@ while True:
 
     if key[pygame.K_SPACE]:
         circle_x=250
+        speed=0.03
         current(now)
         pygame.mixer.music.play()
     if key[pygame.K_RETURN]:
         pygame.mixer.music.stop()
+        speed=0
     if key[pygame.K_RIGHT]:
         circle_x=250
+        pygame.draw.rect(screen, 'White', (280, 40, 300, 40))
         current(jazz)
         now=jazz
         pygame.mixer.music.play()
+        speed=0.03
+        imaging = juzzing
+        texting = text2
     if key[pygame.K_LEFT]:
         circle_x=250
+        pygame.draw.rect(screen, 'White', (280, 40, 300, 40))
         current(calm)
         now=calm
         pygame.mixer.music.play()
+        imaging=lofi
+        speed=0.03
+        texting = text
     
-    circle_x+=0.03
+    circle_x+=speed
 
     pygame.display.update()
     clock.tick(60)
