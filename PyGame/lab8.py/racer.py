@@ -22,10 +22,10 @@ height = 600
 speed = 5
 text0 = test_font0.render("GAME OVER", False, 'White' )
 text1 = test_font1.render("Points: ", False, 'Black' )
-"""text2 = test_font1.render("Coins: ", False, 'Black' )"""
+text2 = test_font1.render("Coins: ", False, 'Black' )
 score = 0
-"""global picked_coins
-picked_coins = 0"""
+global picked_coins
+picked_coins = 0
 
 
 background = pygame.image.load('../images/AnimatedStreet.png')
@@ -36,9 +36,10 @@ class Enemy(pygame.sprite.Sprite):
         self.image = pygame.image.load('../images/Enemy.png')
         self.rect = self.image.get_rect()
         self.rect.center = (random.randint(40, width-40), 0)
+        self.speed = 10
 
     def move(self):
-        self.rect.move_ip(0, 10)
+        self.rect.move_ip(0, self.speed)
         if (self.rect.top>600):
             global score
             score +=1
@@ -52,7 +53,7 @@ class Coins(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
         self.image = pygame.image.load('../images/coin.png')
-        self.image = pygame.transform.scale(self.image, (50,50))
+        self.image = pygame.transform.scale(self.image, (40,40))
         self.rect = self.image.get_rect()
         self.rect.center = (random.randint(40, width-40), random.randint(10, height-200))
 
@@ -87,23 +88,31 @@ class Player(pygame.sprite.Sprite):
 P1 = Player()
 E1 = Enemy()
 C1 = Coins()
+C2 = Coins()
 
 enemies = pygame.sprite.Group()
 enemies.add(E1)
-"""coinies = pygame.sprite.Group()
-coinies.add(C1)"""
+coinies = pygame.sprite.Group()
+coinies.add(C1)
+coinies.add(C2)
 all_sprites = pygame.sprite.Group()
 all_sprites.add(P1)
 all_sprites.add(E1)
-"""all_sprites.add(C1)"""
+all_sprites.add(C1)
+all_sprites.add(C2)
 
 inc_speed = pygame.USEREVENT + 1
 pygame.time.set_timer(inc_speed, 1000)
 
+milestones = set()
+
 while True:
     for event in pygame.event.get():
         if event.type == inc_speed:
-            speed += 0.5
+            if picked_coins%3==0 and picked_coins>0 and picked_coins not in milestones:
+                E1.speed += 0.5
+                milestones.add(picked_coins)
+                print(E1.speed)
         if event.type == QUIT:
             pygame.quit()
             exit()
@@ -116,9 +125,9 @@ while True:
     E1.draw(displaysurf)
     scores = score_font.render(str(score), True, 'Black')
     displaysurf.blit(scores, (10,10))
-    """C1.draw(displaysurf)
+    C1.draw(displaysurf)
     all_coins = coin_font.render(str(picked_coins), True, 'Black')
-    displaysurf.blit(all_coins, (width-30,10))"""
+    displaysurf.blit(all_coins, (width-30,10))
 
     for entity in all_sprites:
         displaysurf.blit(entity.image, entity.rect)
@@ -131,8 +140,8 @@ while True:
         displaysurf.blit(text0, (70, 265))
         displaysurf.blit(text1, (70, 320))
         displaysurf.blit(scores, (170,320))
-        """displaysurf.blit(text2, (250, 320))
-        displaysurf.blit(all_coins, (330,320))"""
+        displaysurf.blit(text2, (250, 320))
+        displaysurf.blit(all_coins, (330,320))
         
         pygame.display.update()
         for entity in all_sprites:
@@ -141,11 +150,12 @@ while True:
         pygame.quit()
         exit()
     
-    """if pygame.sprite.spritecollideany(P1, coinies):
+    collided= pygame.sprite.spritecollide(P1, coinies, False)
+    for coin in collided:
         pygame.mixer.Sound('../audio/mario.mp3').play()
-        C1.rect.center = (random.randint(30, 370), random.randint(10, height-400))
-        picked_coins +=1"""
-        
+        coin.rect.center = (random.randint(30, 370), random.randint(10, height-400))
+        picked_coins += random.randint(1, 5)
 
+   
     pygame.display.update()
     clock.tick(60)
