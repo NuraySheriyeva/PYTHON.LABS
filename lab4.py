@@ -1,4 +1,4 @@
-'''
+
 import datetime
 #Write a Python program to subtract five days from current date.
 x=datetime.datetime.now()
@@ -22,11 +22,11 @@ date2 = datetime.datetime(2025, 2, 11, 12, 0, 0)
 difference = date2 - date1
 seconds = difference.total_seconds()
 print(int(seconds))
-'''
 
 
 
-'''
+
+
 #Create a generator that generates the squares of numbers up to some number N.
 def square_generator(N):
     for i in range(N + 1):
@@ -50,12 +50,13 @@ gen=even(numb)
 for i in gen:
     print(", ".join(map(str, gen)))
 #Define a function with a generator which can iterate the numbers, which are divisible by 3 and 4, between a given range 0 and n.
-def forthree(n):
-    for i in range(0, n):
+def fourthree(n):
+    for i in range(0, n+1):
         if i%3==0 and i%4==0:
-            yield i
-        else :
+            yield 1
+        else:
             continue
+
 
 n=int(input("Enter n: "))
 gen=forthree(n)
@@ -80,11 +81,11 @@ c=int(input("Enter c:"))
 gen = down(c)
 
 for i in gen: print(i)
-'''
 
 
 
-'''
+
+
 import math 
 #Write a Python program to convert degree to radian.
 #first way
@@ -116,4 +117,3 @@ base=5
 height=6
 area=float(base*height)
 print(area)
-'''

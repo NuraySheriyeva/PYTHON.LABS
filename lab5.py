@@ -12,7 +12,7 @@ else:
 # that matches a string that has an 'a' followed by two to three 'b'.
 print("2")
 t=input("ENter: ")
-x=r.search(r"^ab{2,3}$", t)
+x=r.search(r"^ab{2,3}", t)
 
 if x:
     print("MATCH")
