@@ -21,10 +21,10 @@ os.chdir(os.path.dirname(os.path.abspath(__file__)))
 clock_surface = pygame.image.load('images/clock.png')
 clock_surface = pygame.transform.scale(clock_surface, (500, 400))  # (width, height)
 
-left_arm= pygame.image.load('images/leftarm.png')
+left_arm= pygame.image.load('images/leftarm.png').convert_alpha()
 left_arm = pygame.transform.scale(left_arm,(50, 500))
 
-right_arm= pygame.image.load('images/rightarm.png')
+right_arm= pygame.image.load('images/rightarm.png').convert_alpha()
 right_arm = pygame.transform.scale(right_arm,(700, 600))
 
 #                            HOW TO INSERT A TEXT
