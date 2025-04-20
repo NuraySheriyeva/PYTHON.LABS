@@ -104,18 +104,18 @@ while isRunning:
         food_spawn = True
         pygame.time.set_timer(FOOD_TIMER,10000)
  
-    """# Check for collision with walls
+    # Check for collision with walls
     if snake_pos[0] < 0 or snake_pos[0] >= WIDTH or snake_pos[1] < 0 or snake_pos[1] >= HEIGHT:
-        isRunning = False"""
+        isRunning = False
     
-    if snake_pos[0] <0:
+    """if snake_pos[0] <0:
         snake_pos[0]=WIDTH-5
     elif snake_pos[0]>WIDTH:
         snake_pos[0]=-5
     elif snake_pos[1]<0:
         snake_pos[1]=HEIGHT-5
     elif snake_pos[1]>HEIGHT:
-        snake_pos[1]=-5
+        snake_pos[1]=-5"""
  
     # Check for collision with itself
     for block in snake_body[1:]:

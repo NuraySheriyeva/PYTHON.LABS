@@ -50,16 +50,16 @@ while True:
     rotate_s= pygame.transform.rotate(left_arm, -angle_s)
     rotate_m= pygame.transform.rotate(right_arm, -angle_m)
 
-    hand_rect_s=rotate_s.get_rect(center=( pivot_x + hand_length * cos(radians(angle_s - 90)),  # -90 aligns it correctly
+    hand_rect_s=rotate_s.get_rect(center=( pivot_x + hand_length * cos(radians(angle_s - 90)), 
         pivot_y + hand_length * sin(radians(angle_s - 90))
     )) 
-    pygame.draw.circle(screen, (0, 0, 0), (pivot_x, pivot_y), 5)  # Small dot for pivot
+    pygame.draw.circle(screen, (0, 0, 0), (pivot_x, pivot_y), 5)  
     screen.blit(rotate_s, hand_rect_s.topleft)
 
-    hand_rect_m=rotate_m.get_rect(center=( pivot_x + hand_length * cos(radians(angle_m - 90)),  # -90 aligns it correctly
+    hand_rect_m=rotate_m.get_rect(center=( pivot_x + hand_length * cos(radians(angle_m - 90)),  
         pivot_y + hand_length * sin(radians(angle_m - 90))
     ))
-    pygame.draw.circle(screen, (0, 0, 0), (pivot_x, pivot_y), 5)  # Small dot for pivot
+    pygame.draw.circle(screen, (0, 0, 0), (pivot_x, pivot_y), 5) 
     screen.blit(rotate_m, hand_rect_m.topleft)
 
     pygame.display.update()
