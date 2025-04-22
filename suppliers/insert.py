@@ -39,18 +39,18 @@ def insert_many_vendors(vendor_list):
     try:
         with  psycopg2.connect(**config) as conn:
             with  conn.cursor() as cur:
-                # execute the INSERT statement
-                cur.executemany(sql, vendor_list)
-
+                for vendor in vendor_list:
+                    cur.execute(sql, vendor)
+                    returned_id=cur.fetchone()
+                    
             # commit the changes to the database
             conn.commit()
     except (Exception, psycopg2.DatabaseError) as error:
         print(error)
+    finally:
+        print("Added many rows")
+
 
 
 if __name__ == '__main__':
-    insert_vendor("lol")
-    insert_many_vendors([("many",),
-                         ("Sa sa sa sa samsa",),
-                         ("Yuki Psu King",),
-                         ("His Ba LL's")])
+    insert_vendor("lol")    
